@@ -3,7 +3,7 @@ public class DigitFrequency {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a number: ");
-        long number = scanner.nextLong(); // Using long for larger numbers
+        long number = scanner.nextLong();
         long tempNum = Math.abs(number);
         long originalNum = tempNum;
         int count = 0;
@@ -21,13 +21,13 @@ public class DigitFrequency {
         int[] frequency = new int[10];
         for (int i = 0; i < digitsArray.length; i++) {
             int digit = digitsArray[i];
-            frequency[digit]++; // Increment the value at the index matching the digit
+            frequency[digit]++;
         }
         System.out.println("\nDigit Frequency Table:");
         System.out.println("Digit | Frequency");
         System.out.println("---------------");
         for (int i = 0; i < frequency.length; i++) {
-            if (frequency[i] > 0) { // Only display digits that appeared
+            if (frequency[i] > 0) {
                 System.out.println("  " + i + "   |    " + frequency[i]);
             }
         }
