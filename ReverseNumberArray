@@ -1,0 +1,31 @@
+import java.util.Scanner;
+public class ReverseNumberArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a number to reverse: ");
+        int number = scanner.nextInt();
+        int tempNum = Math.abs(number);
+        int originalNum = tempNum;
+        int count = 0;
+        if (tempNum == 0) count = 1; // Special case for zero
+        while (tempNum > 0) {
+            tempNum /= 10;
+            count++;
+        }
+        int[] digitsArray = new int[count];
+        tempNum = originalNum;
+        for (int i = 0; i < count; i++) {
+            digitsArray[i] = tempNum % 10;
+            tempNum /= 10;
+        }
+        int[] reversedArray = new int[count];
+        for (int i = 0; i < count; i++) {
+            reversedArray[i] = digitsArray[i]; 
+        }
+        System.out.print("The reversed digits are: ");
+        for (int i = 0; i < reversedArray.length; i++) {
+            System.out.print(reversedArray[i]);
+        }
+        scanner.close();
+    }
+}
