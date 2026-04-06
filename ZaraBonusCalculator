@@ -1,0 +1,55 @@
+import java.util.Scanner;
+public class ZaraBonusCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int totalEmployees = 10;
+        double[] oldSalaries = new double[totalEmployees];
+        double[] yearsOfService = new double[totalEmployees];
+        double[] bonusAmounts = new double[totalEmployees];
+        double[] newSalaries = new double[totalEmployees];
+        double totalOldSalary = 0;
+        double totalNewSalary = 0;
+        double totalBonusPayout = 0;
+        System.out.println("Enter details for " + totalEmployees + " employees:");
+        for (int i = 0; i < totalEmployees; i++) {
+            System.out.println("\nEmployee #" + (i + 1));
+            System.out.print("Enter Salary: ");
+            double salary = sc.nextDouble();
+            System.out.print("Enter Years of Service: ");
+            double years = sc.nextDouble();
+            if (salary <= 0 || years < 0) {
+                System.out.println("Invalid input! Salary and Years must be positive. Please re-enter.");
+                i--; 
+                continue;
+            }
+            oldSalaries[i] = salary;
+            yearsOfService[i] = years;
+        }
+        for (int i = 0; i < totalEmployees; i++) {
+            double bonusPercent;
+            if (yearsOfService[i] > 5) {
+                bonusPercent = 0.05; // 5%
+            } else {
+                bonusPercent = 0.02; // 2%
+            }
+            bonusAmounts[i] = oldSalaries[i] * bonusPercent;
+            newSalaries[i] = oldSalaries[i] + bonusAmounts[i];
+            totalOldSalary += oldSalaries[i];
+            totalNewSalary += newSalaries[i];
+            totalBonusPayout += bonusAmounts[i];
+        }
+        System.out.println("\n================ ZARA PAYROLL SUMMARY ================");
+        System.out.printf("%-15s %-15s %-15s %-15s\n", "Old Salary", "Service", "Bonus", "New Salary");
+        System.out.println("------------------------------------------------------");
+        for (int i = 0; i < totalEmployees; i++) {
+            System.out.printf("$%-14.2f %-14.1f $%-14.2f $%-14.2f\n", 
+                oldSalaries[i], yearsOfService[i], bonusAmounts[i], newSalaries[i]);
+        }
+        System.out.println("------------------------------------------------------");
+        System.out.printf("Total Old Salary Payout: $%.2f\n", totalOldSalary);
+        System.out.printf("Total Bonus Payout:     $%.2f\n", totalBonusPayout);
+        System.out.printf("Total New Salary Payout: $%.2f\n", totalNewSalary);
+        System.out.println("======================================================");
+        sc.close();
+    }
+}
